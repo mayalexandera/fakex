@@ -1,0 +1,6 @@
+<h1> Current Sell Offers </h1><br>
+
+<%= render partial: 'stock', collection: @stocks %>
+
+
+<%= button_to 'Make a new offer', new_listing_path, method: :get %>

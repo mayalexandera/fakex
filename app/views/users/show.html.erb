@@ -1,0 +1,10 @@
+<h2>Welcome <%= current_user.first_name %>!</h2>
+
+
+<%= link_to "View my portfolio", user_portfolio_path(current_user) %><br>
+
+<%= link_to "Account", edit_user_path(current_user), method: :get %> <br>
+
+
+<%= link_to "Market", stocks_path %><br>
+

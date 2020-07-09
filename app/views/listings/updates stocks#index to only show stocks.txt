@@ -1,0 +1,12 @@
+updates stocks#index to only show stocks with available listings
+
+updated users#edit to deposit money into funds
+
+Create New Listing to auto populate with curent user
+Create New Listing to auto populate with curent user's stocks owned
+
+Changed stocks#index to only show available listings (it was set to count == 0, not count > 0)
+
+Changed new_trade_path to new_user_trade_path as per the routes
+
+added back in listings controller to archive post once it's sold

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Fakex</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+
+<body>
+<div class="parent">
+    <div class='div1'>
+       <%= link_to image_tag("https://i.imgur.com/WCaULoR.png"), root_path %>
+    </div>
+    <div class="div2">
+    
+      <ul>
+        <% if signed_in? %>
+        <li style="list-style-image: url('https://i.imgur.com/wt8Sos0.png');" ><%= link_to "#{current_user.username}", user_path(current_user) %></li>
+ 
+        <% else %>
+        <li style="list-style-image: url('https://i.imgur.com/wt8Sos0.png');" ><%= link_to 'Sign up', new_user_path %></li>
+        <% end %>
+
+        <li style="list-style-image: url('https://i.imgur.com/mNUKqZW.png');" ><%= link_to 'Market', stocks_path %></li>
+        <% if signed_in? %>
+        <li style="list-style-image: url('https://i.imgur.com/6z1SPA5.png');" ><%= link_to 'Portfolio', user_portfolio_path(current_user) %></li>
+        
+        <li style="list-style-image: url('https://i.imgur.com/n2aYzuO.png');" ><%= link_to 'Sell', new_user_listing_path(current_user) %></li>
+        <br><br><br>
+        <li style="list-style-image: url('https://i.imgur.com/3WLa0wH.png);"> <%= link_to 'Sign Out', sessions_logout_path, method: :delete %></li>
+        <% else %>
+<br><br><br>
+        <li style="list-style-image: url('https://i.imgur.com/3WLa0wH.png);"><%= link_to 'Sign In', login_path %></li>
+        <%end%>
+      </ul>
+    
+    
+    </div>
+    <%= flash[:errors].join(" ") if flash[:errors] %>
+    <div class="div3"><%= yield %></div>
+  </div>
+  </body>
+</html>

@@ -1,0 +1,8 @@
+<h2> Buy <%= @listing.stock.symbol %> </h2>
+Amount: <%= @listing.amount %><br>
+Price: <%= @listing.show_price %><br> <br>
+Seller: <%= link_to @listing.seller_name, user_path(@listing.seller) %><br> <br>
+
+<%= button_to 'Purchase', new_user_trade_path(current_user), params: {listing_id: @listing.id}, method: :get %>
+
+
