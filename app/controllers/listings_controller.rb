@@ -1,6 +1,6 @@
 class ListingsController < ApplicationController
     def index
-       @listings = Listing.where(status: 'active')
+       @listings = Listing.where(status: 0)
     end
 
     def new
@@ -10,7 +10,7 @@ class ListingsController < ApplicationController
     end
 
     def create
-        @listing = Listing.create(listings_params)
+        @listing = Listing.new(listings_params)
 
         if @listing.verify_listing(params[:listing][:stock_id]) && @listing.save!
             flash[:notice] = "Listing was created successfully."
@@ -27,7 +27,10 @@ class ListingsController < ApplicationController
 
     private
     def listings_params
-        params.require(:listing).permit(:seller_id, :stock_id, :amount, :price)
+        lp = params.require(:listing).permit(:seller_id, :stock_id, :amount, :price, :status)
+        lp[:status] = params[:listing][:status].to_i
+        return lp
+
     end
 
 end
