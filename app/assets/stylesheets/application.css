@@ -13,6 +13,13 @@
  *= require_tree .
  *= require_self
  */
+
+ html * {
+  /* font-size: 1em !important; */
+  color: rgb(91, 91, 91) !important;
+  font-family: Arial !important;
+  }
+
  .parent {
   display: grid;
   grid-template-columns: repeat(30, 50px);
