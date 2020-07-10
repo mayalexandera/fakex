@@ -6,7 +6,6 @@ class User < ApplicationRecord
   has_many :owned_by_users
   attribute :account_balance
 
-  
   validates :first_name, length: { minimum: 4 }, presence: true
   validates :last_name, length: { minimum: 4 }, presence: true
   validates :username, uniqueness: true, length: { minimum: 6, maximum: 14 }
@@ -14,17 +13,15 @@ class User < ApplicationRecord
   validates :password_digest, presence: true
   validates :session_token, presence: true, uniqueness: true
   monetize :account_balance_cents, allow_nil: true,
-  numericality: {
-    less_than_or_equal_to: 1000000000000
-  }
-  attr_reader :password
+  numericality: { less_than_or_equal_to: 1000000000000 }
 
   after_initialize :ensure_session_token!
 
+  attr_reader :password
+  ###USER AUTH METHODS###
   def self.find_by_credentials(username, password)
     user = User.find_by(username: username)
     return nil if user.nil?
-
     user.is_password?(password) ? user : nil
   end
 
@@ -42,15 +39,18 @@ class User < ApplicationRecord
     self.session_token
   end
 
+  ### USER METHODS ###
   def stocks
     OwnedByUser.where(user_id: self.id)
+  end
+
+  def stock_objects
+    
   end
   
   def check_stocks
     self.stocks.each do |s|
-      if s.amount == 0
-        s.destroy!
-      end
+      s.destroy! if s.amount == 0
     end
   end
 
@@ -63,7 +63,6 @@ class User < ApplicationRecord
     return "Portfolio is empty" if stocks.empty?
     stocks.inject(0){ |sum, e| sum + e.total_value}.format
   end
-
 
   def buy_stock(trade)
     stocks = self.stocks
@@ -95,7 +94,7 @@ class User < ApplicationRecord
     buyer = trade.buyer
     balance = buyer.account_balance
     bought = balance - trade.total_cost_write
-    trade.buyer.update(account_balance: bought)
+    trade.buyer.update!(account_balance: bought)
   end
 
   def update_account(user, attribute)

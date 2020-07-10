@@ -3,4 +3,4 @@
 <%= render partial: 'stock', collection: @stocks %>
 
 
-<%= button_to 'Make a new offer', new_listing_path, method: :get %>
+<%= button_to 'Make a new offer', new_user_listing_path(current_user), method: :get %>

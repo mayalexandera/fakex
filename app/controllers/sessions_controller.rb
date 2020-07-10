@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
     render :new
   end
 
-  def create 
+  def create
     @user = User.find_by_credentials(
       params[:username],
       params[:password]
@@ -20,11 +20,9 @@ class SessionsController < ApplicationController
     end
   end
 
-  def logout 
+  def logout
     sign_out!
     redirect_to root_path
   end
-
-
 
 end

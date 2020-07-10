@@ -1,4 +1,6 @@
 
+<p>Stock: <%= listing.stock.symbol %></p> 
+
 Number of Shares: <%= listing.amount %><br>
 Price: <%= listing.show_price %><br> <br>
 Seller: <%= link_to listing.seller_name, user_path(listing.seller) %><br> <br>

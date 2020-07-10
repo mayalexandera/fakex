@@ -7,7 +7,7 @@ class OwnedByUser < ApplicationRecord
   validates :stock_symbol, presence: true
   validates :user, presence: true, uniqueness: { scope: :stock, message: 'User can only be entered once' }
   validates :stock, presence: true, uniqueness: { scope: :user, message: 'Stock id can only be entered once' }
-   monetize :purchase_price_cents, allow_nil: true
+  monetize :purchase_price_cents, allow_nil: true
 
   
   def stock_unit_price_read
@@ -36,11 +36,11 @@ class OwnedByUser < ApplicationRecord
   end
 
   def self.find_user(user, listing)
-  return true if OwnedByUser.find_by(
+    return true if OwnedByUser.find_by(
         user_id: user.id,
         stock_id: listing.stock_id
-      )
-      false
+    )
+    false
   end
 
   def update_user(user, listing)
@@ -49,7 +49,7 @@ class OwnedByUser < ApplicationRecord
 
       record.update!(
         user_id: user.id,
-        stock_id: listing.stock_id, 
+        stock_id: listing.stock_id,
         amount: listing.amount,
         purchase_price: listing.price,
         stock_symbol: listing.stock.symbol

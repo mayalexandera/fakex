@@ -1,7 +1,6 @@
 <%= flash[:errors] if flash[:errors] %>
 <p>Current Balance: <%= current_user.account_balance.format %></p>
 
-
 <%= form_for(current_user) do |u| %>
   <%= u.label "Deposit Amount" %>
   <%= u.text_field  :account_balance %>

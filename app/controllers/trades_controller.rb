@@ -5,9 +5,6 @@ class TradesController < ApplicationController
     @trades = Trade.where(buyer_id: current_user.id)
   end
 
-  def show
-  end
-
   def new
     @user = current_user
     @listing = Listing.find(params[:listing_id])
@@ -28,7 +25,7 @@ class TradesController < ApplicationController
       )
 
       OwnedByUser.create_or_update(@user, @listing)
-      @trade.save!
+ 
       @user.buy_stock(@trade)
       @listing.seller.sell_stock(@trade)
       @listing.update!(status: 1)
@@ -40,9 +37,6 @@ class TradesController < ApplicationController
     end
   end
 
-  def edit
-  end
-
   def destroy
     @trade.destroy
     redirect_to trades_path
@@ -50,12 +44,9 @@ class TradesController < ApplicationController
 
   def update
     @trade.update(trade_params)
-    if @trade.save
-      redirect_to @trade
-    else
-      flash[:errors] = @trade.errors.full_messages
-      render :edit
-    end
+    redirect_to @trade if @trade.save
+    flash[:errors] = @trade.errors.full_messages
+    render :edit
   end
 
   private

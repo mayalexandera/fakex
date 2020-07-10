@@ -1,7 +1,6 @@
 class OwnedByUsersController < ApplicationController
 
   def show
-
   end
 
   private

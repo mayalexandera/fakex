@@ -12,7 +12,7 @@ class ListingsController < ApplicationController
     def create
         @listing = Listing.create(listings_params)
 
-        if @listing.verify_listing(@listing.stock_id) && @listing.save!
+        if @listing.verify_listing(params[:listing][:stock_id]) && @listing.save!
             flash[:notice] = "Listing was created successfully."
             redirect_to listings_path
         else
