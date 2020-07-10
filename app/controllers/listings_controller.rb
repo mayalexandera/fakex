@@ -25,7 +25,6 @@ class ListingsController < ApplicationController
         @listing = Listing.find(params[:id])
     end
 
-
     private
     def listings_params
         params.require(:listing).permit(:seller_id, :stock_id, :amount, :price)

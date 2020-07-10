@@ -9,7 +9,7 @@ class OwnedByUser < ApplicationRecord
   validates :stock, presence: true, uniqueness: { scope: :user, message: 'Stock id can only be entered once' }
   monetize :purchase_price_cents, allow_nil: true
 
-  
+
   def stock_unit_price_read
     self.purchase_price.format
   end
