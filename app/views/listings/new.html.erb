@@ -1,11 +1,10 @@
-
 <div class = 'error'>
 <%= flash[:alert] if flash[:alert] %>
 </div>
 
 <%= form_for @listing do |f| %>
   <h2>Seller: <%= current_user.username %></h2>
-  <%= f.hidden_field :seller_id, value: current_user.id%>
+  <%= f.hidden_field :seller_id, value: current_user.id %>
   <%= f.hidden_field :status, value: 0 %>
   <h2>Stocks: <%= f.collection_select :stock_id, current_user.stocks, :stock_id, :stock_symbol %></h2>
   <h3><%= f.label :amount %> <%= f.number_field :amount %></h3>

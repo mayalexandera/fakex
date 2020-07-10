@@ -2,18 +2,18 @@
 <br><br>
 
 <% if Trade.first %>
-<h3> Today's biggest mover: </h3>
+  <h3> Today's biggest mover: </h3>
 
-<%recent_trades=[]%>
-  <%Trade.all.each do |trade|%>
-    <%if (Time.now.day - trade.created_at.day) <= 1%>
-    <%recent_trades << trade %>
-  <%end%>
-<%end%>
+<% recent_trades=[] %>
+  <% Trade.all.each do |trade| %>
+    <% if (Time.now.day - trade.created_at.day) <= 1 %>
+    <% recent_trades << trade %>
+  <% end %>
+<% end %>
 
-<%popular = recent_trades.max_by do |trade|%>
-  <%trade.listing.price.fractional%>
-<%end%>
+<% popular = recent_trades.max_by do |trade| %>
+  <% trade.listing.price.fractional %>
+<% end %>
 
 <h1> <%= Stock.find(popular.stock_id).symbol %></h1>
 <h2> Last price: <%= popular.listing.price.format %> </h2>

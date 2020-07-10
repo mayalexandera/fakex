@@ -27362,3 +27362,114 @@ Processing by UsersController#new as HTML
 Completed 200 OK in 18ms (Views: 17.1ms | ActiveRecord: 0.2ms | Allocations: 7996)
 
 
+Started GET "/" for ::1 at 2020-07-10 11:35:49 -0400
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  [1m[36mTrade Load (0.2ms)[0m  [1m[34mSELECT "trades".* FROM "trades" ORDER BY "trades"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/views/pages/home.html.erb:4
+  [1m[36mTrade Load (0.2ms)[0m  [1m[34mSELECT "trades".* FROM "trades"[0m
+  ↳ app/views/pages/home.html.erb:8
+  [1m[36mListing Load (0.2ms)[0m  [1m[34mSELECT "listings".* FROM "listings" WHERE "listings"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/pages/home.html.erb:15
+  [1m[36mCACHE Listing Load (0.0ms)[0m  [1m[34mSELECT "listings".* FROM "listings" WHERE "listings"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/pages/home.html.erb:15
+  [1m[36mCACHE Listing Load (0.0ms)[0m  [1m[34mSELECT "listings".* FROM "listings" WHERE "listings"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/pages/home.html.erb:15
+  [1m[36mCACHE Listing Load (0.0ms)[0m  [1m[34mSELECT "listings".* FROM "listings" WHERE "listings"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/pages/home.html.erb:15
+  [1m[36mListing Load (0.1ms)[0m  [1m[34mSELECT "listings".* FROM "listings" WHERE "listings"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/pages/home.html.erb:15
+  [1m[36mListing Load (0.1ms)[0m  [1m[34mSELECT "listings".* FROM "listings" WHERE "listings"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/views/pages/home.html.erb:15
+  [1m[36mListing Load (0.1ms)[0m  [1m[34mSELECT "listings".* FROM "listings" WHERE "listings"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/views/pages/home.html.erb:15
+  [1m[36mListing Load (0.1ms)[0m  [1m[34mSELECT "listings".* FROM "listings" WHERE "listings"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/views/pages/home.html.erb:15
+  [1m[36mListing Load (0.1ms)[0m  [1m[34mSELECT "listings".* FROM "listings" WHERE "listings"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/pages/home.html.erb:15
+  [1m[36mListing Load (0.1ms)[0m  [1m[34mSELECT "listings".* FROM "listings" WHERE "listings"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/views/pages/home.html.erb:15
+  [1m[36mStock Load (0.1ms)[0m  [1m[34mSELECT "stocks".* FROM "stocks" WHERE "stocks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/pages/home.html.erb:18
+  Rendered pages/home.html.erb within layouts/application (Duration: 54.3ms | Allocations: 34280)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "GKwQjRyw9JgvNQgANLtivw/OIy3Bt+ezL8usYAwebMmg8BQaWz2Ko+1ybyuXOaB+mTVuaIx35hYRtOWdyUpS6A=="], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6:in `current_user'
+Completed 200 OK in 105ms (Views: 94.8ms | ActiveRecord: 3.1ms | Allocations: 56470)
+
+
+Started GET "/users/2" for ::1 at 2020-07-10 11:35:53 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "GKwQjRyw9JgvNQgANLtivw/OIy3Bt+ezL8usYAwebMmg8BQaWz2Ko+1ybyuXOaB+mTVuaIx35hYRtOWdyUpS6A=="], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6:in `current_user'
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (Duration: 1.4ms | Allocations: 285)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 31ms (Views: 11.6ms | ActiveRecord: 0.3ms | Allocations: 7266)
+
+
+Started GET "/stocks" for ::1 at 2020-07-10 11:35:55 -0400
+Processing by StocksController#index as HTML
+  [1m[36mListing Load (0.4ms)[0m  [1m[34mSELECT "listings".* FROM "listings" WHERE "listings"."status" = ?[0m  [["status", 0]]
+  ↳ app/models/stock.rb:7:in `map'
+  [1m[36mStock Load (0.2ms)[0m  [1m[34mSELECT "stocks".* FROM "stocks" WHERE "stocks"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/models/stock.rb:7:in `block in active_stocks'
+  [1m[36mStock Load (0.2ms)[0m  [1m[34mSELECT "stocks".* FROM "stocks" WHERE "stocks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/stock.rb:7:in `block in active_stocks'
+  Rendering stocks/index.html.erb within layouts/application
+  [1m[36mCompany Load (0.3ms)[0m  [1m[34mSELECT "companies".* FROM "companies" WHERE "companies"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/views/stocks/_stock.html.erb:2
+  [1m[36mCompany Load (0.2ms)[0m  [1m[34mSELECT "companies".* FROM "companies" WHERE "companies"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/stocks/_stock.html.erb:2
+  Rendered collection of stocks/_stock.html.erb [2 times] (Duration: 12.5ms | Allocations: 4379)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "GKwQjRyw9JgvNQgANLtivw/OIy3Bt+ezL8usYAwebMmg8BQaWz2Ko+1ybyuXOaB+mTVuaIx35hYRtOWdyUpS6A=="], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6:in `current_user'
+  Rendered stocks/index.html.erb within layouts/application (Duration: 14.7ms | Allocations: 5422)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 34ms (Views: 22.4ms | ActiveRecord: 2.2ms | Allocations: 15049)
+
+
+Started GET "/users/2/portfolio" for ::1 at 2020-07-10 11:35:57 -0400
+Processing by UsersController#portfolio as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "GKwQjRyw9JgvNQgANLtivw/OIy3Bt+ezL8usYAwebMmg8BQaWz2Ko+1ybyuXOaB+mTVuaIx35hYRtOWdyUpS6A=="], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6:in `current_user'
+  [1m[36mOwnedByUser Load (0.2ms)[0m  [1m[34mSELECT "owned_by_users".* FROM "owned_by_users" WHERE "owned_by_users"."user_id" = ?[0m  [["user_id", 2]]
+  ↳ app/models/user.rb:52:in `check_stocks'
+  Rendering users/portfolio.html.erb within layouts/application
+  [1m[36mOwnedByUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "owned_by_users" WHERE "owned_by_users"."user_id" = ? LIMIT ?[0m  [["user_id", 2], ["LIMIT", 1]]
+  ↳ app/models/user.rb:63:in `portfolio_value'
+  [1m[36mCACHE OwnedByUser Load (0.0ms)[0m  [1m[34mSELECT "owned_by_users".* FROM "owned_by_users" WHERE "owned_by_users"."user_id" = ?[0m  [["user_id", 2]]
+  ↳ app/models/user.rb:64:in `inject'
+  [1m[36mCACHE OwnedByUser Load (0.0ms)[0m  [1m[34mSELECT "owned_by_users".* FROM "owned_by_users" WHERE "owned_by_users"."user_id" = ?[0m  [["user_id", 2]]
+  ↳ app/views/users/portfolio.html.erb:4
+  [1m[36mStock Load (0.2ms)[0m  [1m[34mSELECT "stocks".* FROM "stocks" WHERE "stocks"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/models/owned_by_user.rb:30:in `stock_symbol'
+  [1m[36mStock Load (0.1ms)[0m  [1m[34mSELECT "stocks".* FROM "stocks" WHERE "stocks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/owned_by_user.rb:30:in `stock_symbol'
+  Rendered collection of users/_stock.html.erb [2 times] (Duration: 6.9ms | Allocations: 4051)
+  Rendered users/portfolio.html.erb within layouts/application (Duration: 13.7ms | Allocations: 6625)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 48ms (Views: 20.7ms | ActiveRecord: 2.0ms | Allocations: 20267)
+
+
+Started GET "/users/2/listings/new" for ::1 at 2020-07-10 11:35:58 -0400
+Processing by ListingsController#new as HTML
+  Parameters: {"user_id"=>"2"}
+  Rendering listings/new.html.erb within layouts/application
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "GKwQjRyw9JgvNQgANLtivw/OIy3Bt+ezL8usYAwebMmg8BQaWz2Ko+1ybyuXOaB+mTVuaIx35hYRtOWdyUpS6A=="], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6:in `current_user'
+  [1m[36mOwnedByUser Load (0.2ms)[0m  [1m[34mSELECT "owned_by_users".* FROM "owned_by_users" WHERE "owned_by_users"."user_id" = ?[0m  [["user_id", 2]]
+  ↳ app/views/listings/new.html.erb:9
+  [1m[36mStock Load (0.2ms)[0m  [1m[34mSELECT "stocks".* FROM "stocks" WHERE "stocks"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/models/owned_by_user.rb:30:in `stock_symbol'
+  [1m[36mStock Load (0.2ms)[0m  [1m[34mSELECT "stocks".* FROM "stocks" WHERE "stocks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/owned_by_user.rb:30:in `stock_symbol'
+  Rendered listings/new.html.erb within layouts/application (Duration: 19.2ms | Allocations: 4781)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 31ms (Views: 27.6ms | ActiveRecord: 0.8ms | Allocations: 11192)
+
+
