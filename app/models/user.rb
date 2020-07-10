@@ -75,7 +75,7 @@ class User < ApplicationRecord
 
   def sell_stock(trade)
     stocks = self.stocks
-    stock = stocks.find_or_create_by(stock_id: trade.stock_id)
+    stock = self.stocks.find_or_create_by(stock_id: trade.stock_id)
     updated = stock.amount - trade.num_of_stocks
     stocks.update(stock.id, amount: updated)
 
