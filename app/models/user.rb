@@ -57,7 +57,7 @@ class User < ApplicationRecord
 
   def portfolio_value
     return "Portfolio is empty" if stocks.empty?
-    stocks.inject(0){ |sum, e| sum + e.total_value}.format
+    stocks.inject(0){ |sum, e| sum + e.total_value }.format
   end
 
   def sell_stock(trade, seller)
@@ -68,10 +68,8 @@ class User < ApplicationRecord
     else
       stock.update!(amount: updated)
     end
-
     self.seller_update_account(trade, seller)
   end
-
 
   def seller_update_account(trade, seller)
     balance = seller.account_balance

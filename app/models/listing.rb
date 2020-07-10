@@ -28,6 +28,4 @@ class Listing < ApplicationRecord
     return true if self.seller.amount_owned(stock_id) >= self.amount
   end
 
- 
-
 end

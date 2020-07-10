@@ -1,7 +1,6 @@
 class OwnedByUser < ApplicationRecord
   belongs_to :user
   belongs_to :stock
-  attribute :status
 
   validates :amount, presence: true, numericality: { only_integer: true }
   validates :amount, exclusion: { in: [0], message: "You can't have less than zero shares." }
@@ -60,14 +59,12 @@ class OwnedByUser < ApplicationRecord
 
   def self.create_or_update(user, listing)
     if OwnedByUser.find_user(user, listing)
-      byebug
       record = OwnedByUser.find_by(user_id: user.id, stock_id: listing.stock_id)
-      byebug
       record.update!(
         amount: record.amount + listing.amount
       )
     end
-      byebug
+      
     OwnedByUser.create!(
       user_id: user.id,
       stock_id: listing.stock_id,
@@ -75,7 +72,6 @@ class OwnedByUser < ApplicationRecord
       purchase_price: listing.price,
       stock_symbol: listing.stock.symbol
     )
-      byebug
   end
 
 end
