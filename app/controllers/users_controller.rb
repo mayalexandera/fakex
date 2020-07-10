@@ -37,11 +37,13 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    sign_in!(@user) if @user.save
-    redirect_to @user
-
-    flash.now[:errors] = @user.errors.full_messages
-    render :new
+    sign_in!(@user) 
+    if @user.save
+      redirect_to @user
+    else
+      flash.now[:errors] = @user.errors.full_messages
+      render :new
+    end
   end
 
   def portfolio
