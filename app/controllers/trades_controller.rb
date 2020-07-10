@@ -16,8 +16,8 @@ class TradesController < ApplicationController
 
   def create
     @listing = Listing.find(params[:listing_id])
-    @user = current_user
-
+    @user = User.find(params[:user])
+    
     if @user.account_balance >= @listing.total_listing_price
       
       @trade = Trade.create!(
@@ -31,12 +31,12 @@ class TradesController < ApplicationController
       @trade.save!
       @user.buy_stock(@trade)
       @listing.seller.sell_stock(@trade)
-      @listing.archived!
+      @listing.update!(status: 1)
       redirect_to user_trades_path(@user)
       flash[:notice] = "Purchase was successful"
     else
       flash[:alert] = "You do not have enough funds for this trade"
-      render :new
+      render :index
     end
   end
 

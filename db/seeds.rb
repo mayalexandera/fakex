@@ -29,9 +29,9 @@ Stock.create!(symbol: "NSA", company_id: 3)
 Stock.create!(symbol: "GOOG", company_id: 4)
 Stock.create!(symbol: "SDK", company_id: 5)
 
-Listing.create!(seller_id: User.first.id, stock_id: Stock.second.id, price: 44, amount: 4 )
-Listing.create!(seller_id: User.first.id, stock_id: Stock.second.id, price: 3, amount: 40)
-Listing.create!(seller_id: User.first.id, stock_id: Stock.third.id, price: 0, amount: 50)
+Listing.create!(seller_id: User.second.id, stock_id: Stock.first.id, price: 33, amount: 4 )
+Listing.create!(seller_id: User.second.id, stock_id: Stock.second.id, price: 3, amount: 40)
+Listing.create!(seller_id: User.third.id, stock_id: Stock.third.id, price: 10, amount: 50)
 
 
 

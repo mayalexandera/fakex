@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_09_004026) do
+ActiveRecord::Schema.define(version: 2020_07_10_020832) do
 
   create_table "companies", force: :cascade do |t|
     t.string "name"
@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 2020_07_09_004026) do
     t.integer "trade_id"
     t.integer "user_id"
     t.integer "stock_id"
+    t.string "stock_symbol"
     t.index ["stock_id"], name: "index_owned_by_users_on_stock_id"
     t.index ["trade_id"], name: "index_owned_by_users_on_trade_id"
     t.index ["user_id"], name: "index_owned_by_users_on_user_id"

@@ -23,6 +23,7 @@ class UsersController < ApplicationController
 
     if current_user.save!
       redirect_to current_user
+      flash[:notice] = "Deposit Successful"
     else
       flash.now[:errors] = current_user.errors.full_messages
       render :edit
@@ -47,6 +48,7 @@ class UsersController < ApplicationController
 
   def portfolio
     @user = current_user
+    @user.check_stocks
     render :portfolio
   end
 

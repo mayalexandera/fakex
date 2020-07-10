@@ -118,5 +118,7 @@ Rails.application.routes.draw do
 
   get '/stock-listings/:id', to:'listings#index2', as: 'stock_listings'
 
+
+
   
 end

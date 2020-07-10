@@ -1,8 +1,18 @@
+
 <div class = 'error'>
 <%= flash[:alert] if flash[:alert] %>
 </div>
 
-<h3> Create New Listing </h3><br>
-<%= render 'form', listing: @listing %>
+<%= form_for @listing do |f| %>
 
-
+<h2>Seller: <%= current_user.username %></h2>
+<%= f.hidden_field :seller_id, value: current_user.id%>
+<%= f.hidden_field :status, value: 0 %>
+<h2>Stocks: <%= f.collection_select :stock_id, current_user.stocks, :id, :stock_symbol %></h2>
+<h3>
+<%= f.label :amount %>
+<%= f.number_field :amount %></h3>
+<h3><%= f.label :price, "Sell Price" %>
+<%= f.number_field :price %></h3><br><br>
+<%= f.submit%>
+<% end %>

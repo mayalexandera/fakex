@@ -1,10 +1,11 @@
-<%= form_for @listing do |f|%>
+<%= form_for listing do |f|%>
 <h3>Seller: <%= current_user.username %></h2>
 <%= f.hidden_field :seller_id, value: current_user.id%>
 <h3>Stocks: <%= f.collection_select :stock_id, current_user.owned_stocks, :id, :symbol %></h2>
+byebug
 <h3>Amount
 <%= f.number_field :amount %></h3>
 <h3><%= f.label :price, "Sell Price" %>
 <%= f.number_field :price %></h3><br><br>
-<%= f.submit %>
+<%= f.submit, listings_path%>
 <% end %>

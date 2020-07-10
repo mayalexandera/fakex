@@ -1,5 +1,5 @@
 <h1> Current Sell Offers </h1><br>
-
+<%= flash[:notice] if flash[:notice] %>
 <%= render partial: 'stock', collection: @stocks %>
 
 

@@ -1,1 +1,2 @@
-<p><%= link_to stock.symbol, listing_path(stock.id) %> (<%= Company.find(stock.company_id).name %>)<br></p>
+<%= flash[:notice] if flash[:notice] %>
+<p><%= link_to stock.symbol, stock_path(stock.id) %> (<%= Company.find(stock.company_id).name %>)<br></p>

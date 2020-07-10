@@ -1,2 +1,5 @@
-<p>you're in the trades index</p>
+<%= flash[:alert] if flash[:alert] %>
+<%= flash[:notice] if flash[:notice] %> <br>
 
+<%= button_to "Go Back to Listings", stocks_path, method: :get %> <br>
+<%= button_to "Go To Portfolio", user_portfolio_path(current_user), method: :get %>

@@ -13,8 +13,8 @@ class ListingsController < ApplicationController
         @listing = Listing.create(listings_params)
 
         if @listing.verify_listing(@listing.stock_id) && @listing.save!
-            @listing.archived!
-            redirect_to listing_path(@listing.id)
+            flash[:notice] = "Listing was created successfully."
+            redirect_to listings_path
         else
             flash[:alert] = "Cannot sell more shares than you own."
             redirect_to new_listing_path

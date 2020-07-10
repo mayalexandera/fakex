@@ -4,12 +4,13 @@ class User < ApplicationRecord
   has_many :trades, class_name: "Trade", foreign_key: "buyer_id"
   has_many :listings, class_name: "Listing", foreign_key: "seller_id"
   has_many :owned_by_users
+  attribute :account_balance
 
   
   validates :first_name, length: { minimum: 4 }, presence: true
   validates :last_name, length: { minimum: 4 }, presence: true
-  validates :username, uniqueness: true, length: { minimum: 6, maximum: 10 }
-  validates :password, length: { minimum: 6, maximum: 10, allow_nil: true }
+  validates :username, uniqueness: true, length: { minimum: 6, maximum: 14 }
+  validates :password, length: { minimum: 6, maximum: 14, allow_nil: true }
   validates :password_digest, presence: true
   validates :session_token, presence: true, uniqueness: true
   monetize :account_balance_cents, allow_nil: true,
@@ -37,23 +38,30 @@ class User < ApplicationRecord
   end
 
   def reset_session_token!
-    self.session_token = SecureRandom.base64(64)
     self.save!
     self.session_token
-  end
-
-  def amount_owned(stock_id) 
-    stocks.find(stock_id).amount
   end
 
   def stocks
     OwnedByUser.where(user_id: self.id)
   end
-
-  def owned_stocks
-    self.stocks.map do |owned|
-      owned.stock
+  
+  def check_stocks
+    self.stocks.each do |s|
+      if s.amount == 0
+        s.destroy!
+      end
     end
+  end
+
+  def amount_owned(stock_id)
+    stock = stocks.find_by(stock_id: stock_id)
+    stock.amount
+  end
+
+  def portfolio_value
+    return "Portfolio is empty" if stocks.empty?
+    stocks.inject(0){ |sum, e| sum + e.total_value}.format
   end
 
 
@@ -75,6 +83,7 @@ class User < ApplicationRecord
     self.seller_update_account(trade)
   end
 
+
   def seller_update_account(trade)
     seller = trade.listing.seller
     balance = seller.account_balance
@@ -89,10 +98,9 @@ class User < ApplicationRecord
     trade.buyer.update(account_balance: bought)
   end
 
-
   def update_account(user, attribute)
     current_balance = user.account_balance
-    input = attribute.to_i
+    input = attribute.gsub(/\D/,'').to_i
     monetize = Money.new(input, "USD")
     new_balance = current_balance + monetize
     user.update!(account_balance: new_balance)
