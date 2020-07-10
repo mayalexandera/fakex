@@ -2,5 +2,6 @@
 <%= flash[:notice] if flash[:notice] %>
 <%= render partial: 'stock', collection: @stocks %>
 
-
+<% if signed_in? %>
 <%= button_to 'Make a new offer', new_user_listing_path(current_user), method: :get %>
+<% end %>
