@@ -28,7 +28,7 @@ Stock.create!(symbol: "EDL", company_id: 2)
 Stock.create!(symbol: "NSA", company_id: 3)
 Stock.create!(symbol: "GOOG", company_id: 4)
 Stock.create!(symbol: "SDK", company_id: 5)
-
+ 
 Listing.create!(seller_id: User.second.id, stock_id: Stock.first.id, price: 33, amount: 4 )
 Listing.create!(seller_id: User.second.id, stock_id: Stock.second.id, price: 3, amount: 40)
 Listing.create!(seller_id: User.find(4).id, stock_id: Stock.find(4).id, price: 200, amount: 4, status: 0)

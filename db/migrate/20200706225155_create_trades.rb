@@ -5,7 +5,7 @@ class CreateTrades < ActiveRecord::Migration[6.0]
       t.references :listing, foreign_key: true
       t.datetime :date
 
-      t.timestamps
+      t.timestamps 
     end
   end
 end
