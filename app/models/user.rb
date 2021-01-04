@@ -2,7 +2,7 @@ require 'bcrypt'
 
 class User < ApplicationRecord
   has_many :trades, class_name: "Trade", foreign_key: "buyer_id"
-  has_many :listings, class_name: "Listing", foreign_key: "seller_id"
+  has_many :listings, class_name: "Listing", foreign_key: "seller_id", dependent: :destroy
   has_many :owned_by_users
   attribute :account_balance
 
@@ -43,10 +43,6 @@ class User < ApplicationRecord
   def stocks
     OwnedByUser.where(user_id: self.id)
   end
-
-  def stock_objects
-    
-  end
   
   def check_stocks
     self.stocks.each do |s|
@@ -61,43 +57,33 @@ class User < ApplicationRecord
 
   def portfolio_value
     return "Portfolio is empty" if stocks.empty?
-    stocks.inject(0){ |sum, e| sum + e.total_value}.format
+    stocks.inject(0){ |sum, e| sum + e.total_value }.format
   end
 
-  def buy_stock(trade)
-    stocks = self.stocks
-    stock = stocks.find_or_create_by(stock_id: trade.stock_id)
-    updated = stock.amount + trade.num_of_stocks
-    stocks.update(stock.id, amount: updated)
-
-    self.buyer_update_account(trade)
-  end
-
-  def sell_stock(trade)
-    stocks = self.stocks
-    stock = self.stocks.find_or_create_by(stock_id: trade.stock_id)
+  def sell_stock(trade, seller)
+    stock = seller.stocks.find_by(stock_id: trade.stock_id)
     updated = stock.amount - trade.num_of_stocks
-    stocks.update(stock.id, amount: updated)
-
-    self.seller_update_account(trade)
+    if updated == 0
+      stock.destroy!
+    else
+      stock.update!(amount: updated)
+    end
+    self.seller_update_account(trade, seller)
   end
 
-
-  def seller_update_account(trade)
-    seller = trade.listing.seller
+  def seller_update_account(trade, seller)
     balance = seller.account_balance
     sold = balance + trade.total_cost_write
     seller.update!(account_balance: sold)
   end
 
-  def buyer_update_account(trade)
-    buyer = trade.buyer
+  def buyer_update_account(trade, buyer)
     balance = buyer.account_balance
     bought = balance - trade.total_cost_write
-    trade.buyer.update!(account_balance: bought)
+    buyer.update!(account_balance: bought)
   end
 
-  def update_account(user, attribute)
+  def deposit_update_account(user, attribute)
     current_balance = user.account_balance
     input = attribute.gsub(/\D/,'').to_i
     monetize = Money.new(input, "USD")

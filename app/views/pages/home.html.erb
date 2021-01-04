@@ -4,7 +4,7 @@
 <% if Trade.first %>
   <h3> Today's biggest mover: </h3>
 
-<% recent_trades=[] %>
+  <% recent_trades=[] %>
   <% Trade.all.each do |trade| %>
     <% if (Time.now.day - trade.created_at.day) <= 1 %>
     <% recent_trades << trade %>

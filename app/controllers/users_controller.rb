@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :require_signed_in!, only: [:show, :edit, :update, :index, :portfolio]
 
-  def index 
+  def index
     @users = User.all
   end
 
@@ -16,7 +16,7 @@ class UsersController < ApplicationController
 
   def update
     if params[:user][:account_balance]
-      current_user.update_account(current_user, params[:user][:account_balance])
+      current_user.deposit_update_account(current_user, params[:user][:account_balance])
     else
       current_user.update(user_params)
     end

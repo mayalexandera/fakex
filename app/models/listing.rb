@@ -4,6 +4,7 @@ class Listing < ApplicationRecord
   belongs_to :seller, class_name: "User"
   attribute :status
 
+  validates :status, presence: true
   validates :seller_id, :stock_id, :price, :amount, presence: true
   monetize :price_cents, allow_nil: true
 

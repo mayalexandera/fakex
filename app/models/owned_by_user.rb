@@ -63,15 +63,15 @@ class OwnedByUser < ApplicationRecord
       record.update!(
         amount: record.amount + listing.amount
       )
-    else
-      OwnedByUser.create!(
-        user_id: user.id,
-        stock_id: listing.stock_id,
-        amount: listing.amount,
-        purchase_price: listing.price,
-        stock_symbol: listing.stock.symbol
-      )
     end
+      
+    OwnedByUser.create!(
+      user_id: user.id,
+      stock_id: listing.stock_id,
+      amount: listing.amount,
+      purchase_price: listing.price,
+      stock_symbol: listing.stock.symbol
+    )
   end
 
 end

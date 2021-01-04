@@ -25,9 +25,9 @@ class TradesController < ApplicationController
       )
 
       OwnedByUser.create_or_update(@user, @listing)
- 
-      @user.buy_stock(@trade)
-      @listing.seller.sell_stock(@trade)
+      
+      @user.buyer_update_account(@trade, @user)
+      @listing.seller.sell_stock(@trade, @listing.seller)
       @listing.update!(status: 1)
       redirect_to user_trades_path(@user)
       flash[:notice] = "Purchase was successful"
